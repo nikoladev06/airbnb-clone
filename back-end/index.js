@@ -1,14 +1,14 @@
 import "dotenv/config";
 import express from "express";
-import { connectDb } from "./config/db";
+import UserRoutes from "./domains/users/routes.js";
 
 const app = express();
 const { PORT } = process.env;
 
-app.get("/", (req, res) => {
-  res.json({ ola: "Olá mundo" });
-});
+app.use(express.json());
+app.use("/users", UserRoutes);
 
+//vê se o server ta funcionando
 app.listen(PORT, () => {
   console.log(`Servidor está rodando na porta ${PORT}`);
 });
