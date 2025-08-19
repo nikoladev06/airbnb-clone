@@ -15,9 +15,9 @@ function App() {
 
   useEffect(() => {
     const axiosGet = async () => {
-      const axiosResponse = await axios.get("/users/profile");
+      const { data } = await axios.get("/users/profile");
 
-      console.log(axiosResponse);
+      setUser(data);
     };
 
     axiosGet();

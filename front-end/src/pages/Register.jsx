@@ -11,21 +11,22 @@ const Register = ({ setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (email && password) {
-    //   try {
-    //     const { data: userDoc } = await axios.post("/users/Register", {
-    //       email,
-    //       password,
-    //     });
+    if (email && password && name) {
+      try {
+        const { data: userDoc } = await axios.post("/users/register", {
+          name,
+          email,
+          password,
+        });
 
-    //     setUser(userDoc);
-    //     setRedirect(true);
-    //   } catch (error) {
-    //     alert(`Deu um erro ao logar ${error.response.data}`);
-    //   }
-    // } else {
-    //   alert("Preencha os campos corretamente");
-    // }
+        setUser(userDoc);
+        setRedirect(true);
+      } catch (error) {
+        alert(`Deu um erro ao cadastrar o usuário ${JSON.stringify(error)}`);
+      }
+    } else {
+      alert("Preencha os campos corretamente!");
+    }
   };
 
   if (redirect) return <Navigate to={"/"} />;

@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+//faz uma requisição no método get, buscando o perfil do usuário logado para manter a sessão
 router.get("/profile", async (req, res) => {
   const { token } = req.cookies;
 
@@ -39,7 +40,7 @@ router.get("/profile", async (req, res) => {
 });
 
 //faz uma requisição no método post, para criar um usuário
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
   connectDb();
 
   const { name, email, password } = req.body;
@@ -53,7 +54,12 @@ router.post("/", async (req, res) => {
       password: encryptedPassword,
     });
 
-    res.json(newUserDoc);
+    const { _id } = newUserDoc;
+    const newUserObj = { name, email, _id };
+
+    const token = jwt.sign(newUserObj, JWT_SECRET_KEY);
+
+    res.cookie("token", token).json(newUserObj);
   } catch (error) {
     res.status(500).json(error);
   }
