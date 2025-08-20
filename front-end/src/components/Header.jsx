@@ -6,12 +6,8 @@ const Header = ({ user }) => {
     <header className="shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-8">
         <Link to="/" className="flex items-center">
-          <img
-            className="h-10"
-            src="https://cdn.prod.website-files.com/61b9e0dd381626819c8d4f83/65e2198d48039ba6444f602b_logo%20hashtag%20-%20h.webp"
-            alt="Logo da Hashtag"
-          />
-          <p className="text-2x1 text-primary-400 font-bold">ashbnb</p>
+          <img className="h-10" src="images/M.png" alt="Logo da Hashtag" />
+          <p className="text-2x1 text-primary-400 font font-bold">ernbnb</p>
         </Link>
 
         <Link
